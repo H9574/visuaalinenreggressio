@@ -1,0 +1,7 @@
+ImageHash>=4.3.1
+lxml>=5.3.0
+pillow>=10.4.0
+pip>=24.2
+requests>=2.32.3
+selenium>=4.23.1
+webdriver-manager>=4.0.2
