@@ -22,8 +22,10 @@ def main():
     # Define the paths to the two XML files
     xml_file1 = 'urls/old_sitemap.xml'
     xml_file2 = 'urls/new_sitemap.xml'
-    x = collect.number_of_urls(xml_file1)-1
-    y = collect.number_of_urls(xml_file2)-1
+    x = int(collect.number_of_urls(xml_file1))-1
+    print("Alkuperäisten URLien määrä " + str(x))
+    y = int(collect.number_of_urls(xml_file2))-1
+    print("Uusien URLien määrä " + str(y))
     if(x == y):
         #continue to compare
         print('Starting to compare screenshots...')
@@ -33,13 +35,14 @@ def main():
             #line2 = collect.get_url_lines(xml_file2, number)
             line2 = new_url + collect.get_url_path(line1)
             #print(line2)
-            t0 = time.time()
+            #t0 = time.time()
             capture.capture_screenshot(line1, 'screenshots/original.png')
             capture.capture_screenshot(line2, 'screenshots/new_site.png')
-            t1 = time.time()
-            total = t1-t0
-            print(total)
+            #t1 = time.time()
+            #total = t1-t0
+            #print(total)
             if compare.compare_screenshot('screenshots/original.png','screenshots/new_site.png') == True:
+                #break
                 continue
             else:
                 #Save urls and pictures
@@ -47,7 +50,7 @@ def main():
                 capture.screenshots_didnt_match('screenshots/new_site.png', f'failed/{number}/Is.png', f'failed/{number}/')
                 with open(f'failed/{number}/urls.txt', 'w') as file:
                     file.write(line1 + '\n' + line2)
-                break
+                #break
 
     else:
         print('We are missing some URLs')
